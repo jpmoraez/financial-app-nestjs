@@ -1,0 +1,27 @@
+service:
+  name: serverless-example
+
+package:
+  excludeDevDependencies: true
+  exclude:
+    - reports/**
+    - test/**
+    - development/**
+    - src/**
+    - ./*
+    - ./.**/**
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  personStatus:
+    handler: dist/main.handler
+    events:
+      - http:
+          method: get
+          path: /onboarding-platform/person-integration-status/{document}
